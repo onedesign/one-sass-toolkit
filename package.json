@@ -14,5 +14,8 @@
   ],
   "author": "One Design Company",
   "license": "MIT",
-  "homepage": "https://github.com/onedesign/one-sass-toolkit"
+  "homepage": "https://github.com/onedesign/one-sass-toolkit",
+  "dependencies": {
+    "sass-mq": "^3.2.9"
+  }
 }
