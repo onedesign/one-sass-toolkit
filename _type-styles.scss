@@ -1,0 +1,138 @@
+@import "util/map-deep-get";
+
+//===============================================================
+// Type Styles
+//===============================================================
+/*
+  Utility that automatically generates all of the type styles
+  for a project. Relies on $type-styles and $font-stacks map variables existing in the following format:
+  
+  $font-stacks: (
+    futura-bold: (
+      font-family: (Futura, 'Trebuchet MS', Arial, sans-serif),
+      font-weight: 700,
+      font-style: normal
+    ),
+    helvetica: (
+      font-family: ('Helvetica Neue', Helvetica, Arial, sans-serif;),
+      font-weight: normal,
+      font-style: normal
+    )
+  );
+
+  $type-styles: (
+    heading: (
+      stack: futura-bold,
+      line-height: 1,
+      text-transform: normal,
+      letter-spacing: 0,
+      sizes: (
+        default: 14
+      )
+    ),
+
+    body: (
+      stack: helvetica,
+      line-height: 1.4,
+      text-transform: uppercase,
+      letter-spacing: 1.2,
+      font-smoothing: true,
+      sizes: (
+        default: 16,
+        medium: 24
+      )
+    )
+  );
+*/
+
+
+//---------------------------------------------------------------
+// Get Style Map
+//---------------------------------------------------------------
+/*
+  Function for getting a specific style map from within the $type-styles map
+  @param $key (string)  - Key style you want
+  @param $map (map)     - Map to search for $key [$font-stacks] 
+*/
+@function get-style-map($key, $map) {
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  } @else {
+    @warn "Key #{$key} doesn't exist in map #{$map}";
+  }
+}
+
+
+//---------------------------------------------------------------
+// Font Stack Styles
+//---------------------------------------------------------------
+/*
+  Generates font styles related to a specific font-stack.  
+  @param $key (string)  - Key to find in $map
+  @param $map (map)     - Map to search for $key [$font-stacks] 
+*/
+@mixin font-stack-styles($key, $map: $font-stacks) {
+  @if map_has_key($map, $key) {
+    font-family: map-deep-get($map, $key, 'font-family');
+    font-weight: map-deep-get($map, $key, 'font-weight');
+    font-style: map-deep-get($map, $key, 'font-style');
+  }
+}
+
+
+//---------------------------------------------------------------
+// Type Styles
+//---------------------------------------------------------------
+/*
+  Generate font-family and typesize styles across breakpoints. 
+  @param $key (string)   - Should be a top level key from the $type-styles map
+  @param $map (map)      - Map to search for $key [$font-stacks] 
+*/
+@mixin type-style($key, $map: $type-styles) {
+  // Get the style map from within our $type-styles map
+  $map-style: get-style-map($key, $map);
+  
+  // Use $key to get the 'sizes' map from within the styles map
+  $map-sizes: map-deep-get($map, $key, 'sizes');
+  
+  // Get the default size from that size map
+  $default: map-get($map-sizes, default);
+  
+  // Set base font-size
+  font-size: ($default / 10) * 1rem;
+  line-height: map-get($map-style, line-height);
+  text-transform: map-get($map-style, text-transform);
+  letter-spacing: map-get($map-style, letter-spacing);
+  @if map_has_key($map, $key) and map-get($map-style, font-smoothing)  {
+    @include font-smoothing();
+  }
+  
+  // Set font-family
+  @include font-stack-styles(map-get($map-style, 'stack'));
+  
+  // Remove the default size from the map before generating mq-based font-sizes
+  $responsive-sizes: map-remove($map-sizes, default);
+
+  @each $break, $size in $responsive-sizes {
+    @include mq($break) {
+      font-size: ($size / 10) * 1rem;
+    }
+  }
+}
+
+
+//---------------------------------------------------------------
+// Output Helper Classes
+//---------------------------------------------------------------
+/*
+  Loop through the $type-styles map (defined in `_base/variables.scss`)
+  and generate helpers classes we can use to apply directly into our
+  template markup. 
+*/
+@mixin generate-type-helpers($map: $type-styles) {
+  @each $class in map-keys($map) {
+    .h-type-#{$class} {
+      @include type-style($class);
+    }
+  }
+}
