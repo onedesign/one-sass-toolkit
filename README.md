@@ -119,42 +119,42 @@ Also relies on $`type-styles` and `$font-stacks` map variables existing in the f
 
 ```scss
 $font-stacks: (
-    futura-bold: (
-      font-family: (Futura, 'Trebuchet MS', Arial, sans-serif),
-      font-weight: 700,
-      font-style: normal
-    ),
-    helvetica: (
-      font-family: ('Helvetica Neue', Helvetica, Arial, sans-serif;),
-      font-weight: normal,
-      font-style: normal
-    )
-  );
+  futura-bold: (
+    font-family: (Futura, 'Trebuchet MS', Arial, sans-serif),
+    font-weight: 700,
+    font-style: normal
+  ),
+  helvetica: (
+    font-family: ('Helvetica Neue', Helvetica, Arial, sans-serif;),
+    font-weight: normal,
+    font-style: normal
+  )
+);
 
-  $type-styles: (
-    heading: (
-      stack: futura-bold,
-      line-height: 1,
-      text-transform: normal,
-      letter-spacing: 0,
-      sizes: (
-        default: 14,
-        medium: 18
-      )
-    ),
-
-    body: (
-      stack: helvetica,
-      line-height: 1.4,
-      text-transform: uppercase,
-      letter-spacing: 1.2,
-      font-smoothing: true,
-      sizes: (
-        default: 16,
-        medium: 24
-      )
+$type-styles: (
+  heading: (
+    stack: futura-bold,
+    line-height: 1,
+    text-transform: normal,
+    letter-spacing: 0,
+    sizes: (
+      default: 14,
+      medium: 18
     )
-  );
+  ),
+
+  body: (
+    stack: helvetica,
+    line-height: 1.4,
+    text-transform: uppercase,
+    letter-spacing: 1.2,
+    font-smoothing: true,
+    sizes: (
+      default: 16,
+      medium: 24
+    )
+  )
+);
 ```
 
 ### Spacing
