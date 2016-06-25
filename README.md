@@ -48,8 +48,8 @@ The `color` utility grabs colors and optionally generates helper class for your 
 
 ```scss
 .my-stuff {
-    background-color: color(blue);
-    color: color(yellow);
+  background-color: color(blue);
+  color: color(yellow);
 }
 ```
 
@@ -57,7 +57,7 @@ The `color` utility grabs colors and optionally generates helper class for your 
 
 ```html
 <div class="h-color-bg-blue">
-    <h1 class="h-color-text-yellow">We all live in a yellow submarine</h1>
+  <h1 class="h-color-text-yellow">We all live in a yellow submarine</h1>
 </div>
 ```
 
@@ -66,16 +66,14 @@ The `color` utility grabs colors and optionally generates helper class for your 
 Relies on a `$colors` map variable existing in the following format:
 
 ```scss
-  $colors: (
-    black: #222,
-    white: #fff,
-    gray: #aaa,
-    blue: #118bc1,
-    yellow: #ffe215
-  );
+$colors: (
+  black: #222,
+  white: #fff,
+  gray: #aaa,
+  blue: #118bc1,
+  yellow: #ffe215
+);
 ```
-
-The 
 
 ### Type Styles
 
