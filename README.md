@@ -83,7 +83,7 @@ Automatically generates all of the type styles for a project, provides a mixin f
 
 ```scss
 .my-heading {
-  @include type-styles(heading);
+  @include type-style(heading);
 }
 
 // Outputs the following css
