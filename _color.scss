@@ -25,7 +25,7 @@ $shade-mix: #000 !default;
 /*
   Function for getting a specific color from within the $colors map
   @param $key (string)  - Key color you want
-  @param $map (map)     - Map to search for $key [$colors] 
+  @param $map (map)     - Map to search for $key [$colors]
 */
 @function color($key, $map: $colors) {
   @if map-has-key($map, $key) {
@@ -70,9 +70,12 @@ $shade-mix: #000 !default;
 /*
   Loop through the $colors map (defined in `_base/variable.scss`)
   and generate helpers classes we can use to apply directly into our
-  template markup. 
+  template markup.
 */
-@mixin generate-color-helpers($map: $colors) {
+
+$output-color-helpers: true !default;
+
+@if $output-color-helpers {
   @each $color in map-keys($map) {
     .h-color-text-#{$color} {
       color: color($color);

@@ -27,6 +27,18 @@ npm install one-sass-toolkit --save
 
 The included tools are based heavily on the frontend development process at One Design Company, and as a result make some assumptions about the tools you're using and how your styles are organized.
 
+#### Outputting Helpers
+
+There are three variables included for outputting helpers. One for each toolkit file.
+```
+$output-color-helpers
+$output-spacing-helpers
+$output-type-helpers
+```
+
+By default all helpers are output, to turn them off just add the variable and set the variable to `false`.
+
+
 #### Media Queries
 
 One Sass Toolkit uses [sass-mq](https://github.com/sass-mq/sass-mq) for responsive adjustments, which expects you to have a global `$mq-breakpoints` variable that defines your mobile-first breakpoints. The exact sizes you have defined for these breakpoints can be anything, and you can specify additional breakpoints:
@@ -159,8 +171,8 @@ $type-styles: (
 
 ### Spacing
 
-Mixin to provide spacing (either margin or padding) to a defined 
-location of an element and have that spacing scale down proportionally 
+Mixin to provide spacing (either margin or padding) to a defined
+location of an element and have that spacing scale down proportionally
 at smaller screen sizes. Can also optionally generate helper classes for use directly in your HTML.
 
 #### As an SCSS mixin

@@ -7,7 +7,7 @@
 /*
   Utility that automatically generates all of the type styles
   for a project. Relies on $type-styles and $font-stacks map variables existing in the following format:
-  
+
   $font-stacks: (
     futura-bold: (
       font-family: (Futura, 'Trebuchet MS', Arial, sans-serif),
@@ -53,7 +53,7 @@
 /*
   Function for getting a specific style map from within the $type-styles map
   @param $key (string)  - Key style you want
-  @param $map (map)     - Map to search for $key [$font-stacks] 
+  @param $map (map)     - Map to search for $key [$font-stacks]
 */
 @function get-style-map($key, $map) {
   @if map-has-key($map, $key) {
@@ -68,9 +68,9 @@
 // Font Stack Styles
 //---------------------------------------------------------------
 /*
-  Generates font styles related to a specific font-stack.  
+  Generates font styles related to a specific font-stack.
   @param $key (string)  - Key to find in $map
-  @param $map (map)     - Map to search for $key [$font-stacks] 
+  @param $map (map)     - Map to search for $key [$font-stacks]
 */
 @mixin font-stack-styles($key, $map: $font-stacks) {
   @if map_has_key($map, $key) {
@@ -85,20 +85,20 @@
 // Type Styles
 //---------------------------------------------------------------
 /*
-  Generate font-family and typesize styles across breakpoints. 
+  Generate font-family and typesize styles across breakpoints.
   @param $key (string)   - Should be a top level key from the $type-styles map
-  @param $map (map)      - Map to search for $key [$font-stacks] 
+  @param $map (map)      - Map to search for $key [$font-stacks]
 */
 @mixin type-style($key, $map: $type-styles) {
   // Get the style map from within our $type-styles map
   $map-style: get-style-map($key, $map);
-  
+
   // Use $key to get the 'sizes' map from within the styles map
   $map-sizes: map-deep-get($map, $key, 'sizes');
-  
+
   // Get the default size from that size map
   $default: map-get($map-sizes, default);
-  
+
   // Set base font-size
   font-size: ($default / 10) * 1rem;
   line-height: map-get($map-style, line-height);
@@ -107,10 +107,10 @@
   @if map_has_key($map, $key) and map-get($map-style, font-smoothing)  {
     @include font-smoothing();
   }
-  
+
   // Set font-family
   @include font-stack-styles(map-get($map-style, 'stack'));
-  
+
   // Remove the default size from the map before generating mq-based font-sizes
   $responsive-sizes: map-remove($map-sizes, default);
 
@@ -128,10 +128,13 @@
 /*
   Loop through the $type-styles map (defined in `_base/variables.scss`)
   and generate helpers classes we can use to apply directly into our
-  template markup. 
+  template markup.
 */
-@mixin generate-type-helpers($map: $type-styles) {
-  @each $class in map-keys($map) {
+
+$output-type-helpers: true !default;
+
+@if $output-type-helpers {
+  @each $class in map-keys($type-styles) {
     .h-type-#{$class} {
       @include type-style($class);
     }
