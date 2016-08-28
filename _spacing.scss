@@ -92,7 +92,7 @@
 $output-spacing-helpers: true !default;
 
 @if $output-spacing-helpers {
-  @each $amount in map-keys($map) {
+  @each $amount in map-keys($spacing) {
     .h-spacing-top-margin-#{$amount} {
       @include spacing($amount);
     }
