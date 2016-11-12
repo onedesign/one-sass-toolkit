@@ -19,6 +19,7 @@ npm install one-sass-toolkit --save
 @import "one-sass-toolkit/color";
 @import "one-sass-toolkit/spacing";
 @import "one-sass-toolkit/type-styles";
+@import "one-sass-toolkit/fluid-type";
 ```
 
 ## Use
@@ -159,8 +160,8 @@ $type-styles: (
 
 ### Spacing
 
-Mixin to provide spacing (either margin or padding) to a defined 
-location of an element and have that spacing scale down proportionally 
+Mixin to provide spacing (either margin or padding) to a defined
+location of an element and have that spacing scale down proportionally
 at smaller screen sizes. Can also optionally generate helper classes for use directly in your HTML.
 
 #### As an SCSS mixin
@@ -216,3 +217,20 @@ $spacing: (
 ```
 
 The exact names of the keys in this map aren't important, as long as `@include spacing(foo)` has a matching key `foo` in the map.
+
+### Fluid Type
+Written by [Indrek Paas](https://github.com/indrekpaas) and inspired by [Mike Riethmuller](https://madebymike.com.au/writing/precise-control-responsive-typography/) this mixin allows you to specify a minumum and maximum size for values. Allowing for more fluid websites.
+
+#### As an SCSS mixin
+```
+@include fluid-type($properties)
+/* Single property */
+html {
+  @include fluid-type(font-size, 320px, 1366px, 14px, 18px);
+}
+
+/* Multiple properties with same values */
+h1 {
+  @include fluid-type(padding-bottom padding-top, 20em, 70em, 2em, 4em);
+}
+```
