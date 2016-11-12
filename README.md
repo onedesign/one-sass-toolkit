@@ -7,6 +7,7 @@ A collection of foundational utilities for Sass.
 - [Color](#color)
 - [Type Styles](#type-styles)
 - [Spacing](#spacing)
+- [Fluid Type](#fluid-type)
 
 ## Install
 
