@@ -235,7 +235,7 @@ The exact names of the keys in this map aren't important, as long as `@include s
 Written by [Indrek Paas](https://github.com/indrekpaas) and inspired by [Mike Riethmuller](https://madebymike.com.au/writing/precise-control-responsive-typography/) this mixin allows you to specify a minumum and maximum size for values. Allowing for more fluid websites.
 
 #### As an SCSS mixin
-```
+```scss
 @include fluid-type($properties)
 /* Single property */
 html {
