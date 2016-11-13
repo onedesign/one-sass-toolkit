@@ -4,13 +4,13 @@
 /*
   Utility that automatically generates all of the color styles
   for a project. Relies on a $colors map variable existing in the following format:
-
-  $colors: (
-    black: #222,
-    white: #fff,
-    gray: #aaa
-  );
 */
+
+$colors: (
+  black: #222,
+  white: #fff,
+  gray: #aaa
+) !default;
 
 //---------------------------------------------------------------
 // Variables

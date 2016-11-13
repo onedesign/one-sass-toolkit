@@ -7,18 +7,18 @@
   Mixin to provide spacing (either margin or padding) to a defined
   location of an element and have that spacing scale down proportionally
   at smaller screen sizes. Relies on a $spacing map variable existing in the following format:
-
-  $spacing: (
-    none: 0,
-    xs: 2rem,
-    s: 3rem,
-    sm: 4rem,
-    m: 5rem,
-    ml: 6rem,
-    l: 8.5rem,
-    xl: 15rem
-  );
 */
+
+$spacing: (
+  none: 0,
+  xs: 2rem,
+  s: 3rem,
+  sm: 4rem,
+  m: 5rem,
+  ml: 6rem,
+  l: 8.5rem,
+  xl: 15rem
+) !default;
 
 
 //---------------------------------------------------------------
