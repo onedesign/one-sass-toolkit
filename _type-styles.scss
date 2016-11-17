@@ -10,12 +10,12 @@
 */
 
 $font-stacks: (
-  futura-bold: (
-    font-family: (Futura, 'Trebuchet MS', Arial, sans-serif),
+  serif: (
+    font-family: (Georgia, Times, "Times New Roman", serif),
     font-weight: 700,
     font-style: normal
   ),
-  helvetica: (
+  sans-serif: (
     font-family: ('Helvetica Neue', Helvetica, Arial, sans-serif),
     font-weight: normal,
     font-style: normal
@@ -24,24 +24,23 @@ $font-stacks: (
 
 $type-styles: (
   heading: (
-    stack: futura-bold,
-    line-height: 1,
+    stack: sans-serif,
+    line-height: 1.4,
     text-transform: normal,
     letter-spacing: 0,
     sizes: (
-      default: 14
+      default: 24,
+      medium: 36
     )
   ),
 
   body: (
-    stack: helvetica,
-    line-height: 1.4,
-    text-transform: uppercase,
-    letter-spacing: 1.2,
-    font-smoothing: true,
+    stack: serif,
+    line-height: 1.6,
+    text-transform: normal,
+    letter-spacing: 0,
     sizes: (
-      default: 16,
-      medium: 24
+      default: 16
     )
   )
 ) !default;
