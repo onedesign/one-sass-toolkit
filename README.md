@@ -95,6 +95,8 @@ Automatically generates all of the type styles for a project, provides a mixin f
 
 #### As an SCSS mixin
 
+### With responsive sizing
+
 ```scss
 .my-heading {
   @include type-style(heading);
@@ -115,6 +117,48 @@ Automatically generates all of the type styles for a project, provides a mixin f
   .my-heading {
       font-size: 1.8rem;
   }
+}
+*/
+```
+
+### Without responsive sizing
+
+If you'd like to get a type style at a specific size, without automatically including the responsive adjustments, you can use the `get-type-style` mixin:
+
+```scss
+.my-heading {
+    @include get-type-style(heading, medium);
+}
+
+// Outputs the following css
+
+/*
+.my-heading {
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif,
+  font-size: 1.8rem,
+  line-height: 1,
+  text-transform: normal,
+  letter-spacing: 0
+}
+*/
+```
+
+### Font stack only
+
+And if you _only_ want the basic styling for a font stack, you can use the `font-stack-styles` mixin:
+
+```scss
+.my-heading {
+    @include font-stack-styles(futura-bold);
+}
+
+// Outputs the following css
+
+/*
+.my-heading {
+  font-family: (Futura, 'Trebuchet MS', Arial, sans-serif),
+  font-weight: 700,
+  font-style: normal
 }
 */
 ```
