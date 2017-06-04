@@ -25,22 +25,26 @@ $font-stacks: (
 $type-styles: (
   heading: (
     stack: sans-serif,
-    line-height: 1.4,
-    text-transform: normal,
-    letter-spacing: 0,
     sizes: (
       default: 24,
       medium: 36
+    ),
+    properties: (
+      line-height: 1.4,
+      text-transform: normal,
+      letter-spacing: 0
     )
   ),
 
   body: (
     stack: serif,
-    line-height: 1.6,
-    text-transform: normal,
-    letter-spacing: 0,
     sizes: (
       default: 16
+    ),
+    properties: (
+      line-height: 1.6,
+      text-transform: normal,
+      letter-spacing: 0,
     )
   )
 ) !default;
@@ -100,15 +104,19 @@ $type-styles: (
 
   // Set base font-size
   font-size: ($default / 10) * 1rem;
-  line-height: map-get($map-style, line-height);
-  text-transform: map-get($map-style, text-transform);
-  letter-spacing: map-get($map-style, letter-spacing);
   @if map_has_key($map, $key) and map-get($map-style, font-smoothing)  {
     @include font-smoothing();
   }
 
   // Set font-family
   @include font-stack-styles(map-get($map-style, 'stack'));
+
+  // Set arbitrary properties
+  @if map_has_key($map-style, 'properties') {
+    @each $property, $value in map-get($map-style, 'properties') {
+      #{$property}: $value;
+    }
+  }
 
   // Remove the default size from the map before generating mq-based font-sizes
   $responsive-sizes: map-remove($map-sizes, default);
