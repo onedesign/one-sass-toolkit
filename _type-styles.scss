@@ -1,6 +1,6 @@
 @import "map-deep-get";
 @import "font-smoothing";
-@import "node_modules/sass-mq/mq";
+@import 'fluid-type';
 
 //===============================================================
 // Type Styles
@@ -15,13 +15,13 @@ $font-stacks: (
   sans-serif: ('Helvetica Neue', Helvetica, Arial, sans-serif)
 ) !default;
 
+$fluid-min-screen: 320px !default;
+$fluid-max-wcreen: 1440px !default;
+
 $type-styles: (
   heading: (
     stack: sans-serif,
-    sizes: (
-      default: 24,
-      medium: 36
-    ),
+    sizes: (24, 36),
     properties: (
       line-height: 1.4,
       text-transform: normal,
@@ -31,9 +31,7 @@ $type-styles: (
 
   body: (
     stack: serif,
-    sizes: (
-      default: 16
-    ),
+    sizes: (16),
     properties: (
       line-height: 1.6,
       text-transform: normal,
@@ -74,45 +72,6 @@ $type-styles: (
   }
 }
 
-
-//---------------------------------------------------------------
-// Get Type Style
-//---------------------------------------------------------------
-/*
-  Mixin for getting a font-stack and size from the $type-styles map.
-  @param $key (string)  - Should be a top level key from the $type-styles map
-  @param $size (string) - The size key to grab, should correspond to a breakpoint
-  @param $map (map)     - Map to search for $key [$font-stacks]
-*/
-@mixin get-type-style($key, $size: default, $map: $type-styles) {
-  @if map-has-key($map, $key){
-    // Get the style map from within our $type-styles map
-    $map-style: get-style-map($key, $map);
-    // Use $key to get the 'sizes' map from within the styles map
-    $map-sizes: map-deep-get($map, $key, 'sizes');
-    // Get the  size from that size map
-    $font-size: map-get($map-sizes, $size);
-
-    // Set font-size
-    font-size: ($font-size / 10) * 1rem;
-
-    // Set arbitrary properties
-    @if map_has_key($map-style, 'properties') {
-      @each $property, $value in map-get($map-style, 'properties') {
-        #{$property}: $value;
-      }
-    }
-
-    @if map_has_key($map, $key) and map-get($map-style, font-smoothing)  {
-      @include font-smoothing();
-    }
-    // Set font-family
-    @include font-stack-styles(map-get($map-style, 'stack'));
-  }
-}
-
-
-
 //---------------------------------------------------------------
 // Type Styles
 //---------------------------------------------------------------
@@ -121,14 +80,29 @@ $type-styles: (
   @param $key (string)   - Should be a top level key from the $type-styles map
   @param $map (map)      - Map to search for $key [$font-stacks]
 */
-@mixin type-style($key, $map: $type-styles) {
+@mixin type-style($key, $fluid: true, $map: $type-styles) {
   $map-style: get-style-map($key, $map);
 
-  // Use $key to get the 'sizes' map from within the styles map
-  $map-sizes: map-deep-get($map, $key, 'sizes');
+  // Get our sizes list
+  $map-sizes: map-get($map-style, 'sizes');
 
-  // Get the default size from that size map
-  $default: map-get($map-sizes, default);
+  // Set the default to be the first value
+  $default: nth($map-sizes, 1);
+
+  // If the map is longer than 1 item and if the fluid option is set to true
+  @if length($map-sizes) > 1 and $fluid {
+    // Interpolate
+    @include fluid-type(
+      'font-size',
+      $fluid-min-screen,
+      $fluid-max-wcreen,
+      ($default * 1px),
+      nth($map-sizes, -1) * 1px
+    );
+  } @else {
+    // Otherwise just output font-size
+   font-size: ($default / 10) * 1rem;
+  }
 
   // Set base font-size
   font-size: ($default / 10) * 1rem;
@@ -143,15 +117,6 @@ $type-styles: (
   @if map_has_key($map-style, 'properties') {
     @each $property, $value in map-get($map-style, 'properties') {
       #{$property}: $value;
-    }
-  }
-
-  // Remove the default size from the map before generating mq-based font-sizes
-  $responsive-sizes: map-remove($map-sizes, default);
-
-  @each $break, $size in $responsive-sizes {
-    @include mq($break) {
-      font-size: ($size / 10) * 1rem;
     }
   }
 }
