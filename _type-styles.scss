@@ -11,16 +11,8 @@
 */
 
 $font-stacks: (
-  serif: (
-    font-family: (Georgia, Times, "Times New Roman", serif),
-    font-weight: 700,
-    font-style: normal
-  ),
-  sans-serif: (
-    font-family: ('Helvetica Neue', Helvetica, Arial, sans-serif),
-    font-weight: normal,
-    font-style: normal
-  )
+  serif: (Georgia, Times, "Times New Roman", serif),
+  sans-serif: ('Helvetica Neue', Helvetica, Arial, sans-serif)
 ) !default;
 
 $type-styles: (
@@ -78,9 +70,7 @@ $type-styles: (
 */
 @mixin font-stack-styles($key, $map: $font-stacks) {
   @if map_has_key($map, $key) {
-    font-family: map-deep-get($map, $key, 'font-family');
-    font-weight: map-deep-get($map, $key, 'font-weight');
-    font-style: map-deep-get($map, $key, 'font-style');
+    font-family: map-get($map, $key);
   }
 }
 
