@@ -83,6 +83,9 @@ $type-styles: (
 @mixin type-style($key, $fluid: true, $map: $type-styles) {
   $map-style: get-style-map($key, $map);
 
+  // Set font-family
+  @include font-stack-styles(map-get($map-style, 'stack'));
+
   // Get our sizes list
   $map-sizes: map-get($map-style, 'sizes');
 
@@ -104,14 +107,11 @@ $type-styles: (
    font-size: ($default / 10) * 1rem;
   }
 
-  // Set base font-size
-  font-size: ($default / 10) * 1rem;
-  @if map_has_key($map, $key) and map-get($map-style, font-smoothing)  {
+  // Font smoothing?
+  @if map_has_key($map, $key) and map-get($map-style, smoothing)  {
     @include font-smoothing();
   }
 
-  // Set font-family
-  @include font-stack-styles(map-get($map-style, 'stack'));
 
   // Set arbitrary properties
   @if map_has_key($map-style, 'properties') {
