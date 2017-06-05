@@ -105,9 +105,14 @@ $type-styles: (
 
     // Set font-size
     font-size: ($font-size / 10) * 1rem;
-    line-height: map-get($map-style, line-height);
-    text-transform: map-get($map-style, text-transform);
-    letter-spacing: map-get($map-style, letter-spacing);
+
+    // Set arbitrary properties
+    @if map_has_key($map-style, 'properties') {
+      @each $property, $value in map-get($map-style, 'properties') {
+        #{$property}: $value;
+      }
+    }
+
     @if map_has_key($map, $key) and map-get($map-style, font-smoothing)  {
       @include font-smoothing();
     }
@@ -127,7 +132,7 @@ $type-styles: (
   @param $map (map)      - Map to search for $key [$font-stacks]
 */
 @mixin type-style($key, $map: $type-styles) {
-  @include get-type-style($key, default);
+  $map-style: get-style-map($key, $map);
 
   // Use $key to get the 'sizes' map from within the styles map
   $map-sizes: map-deep-get($map, $key, 'sizes');
