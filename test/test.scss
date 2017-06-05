@@ -1,0 +1,21 @@
+// Sass MQ config
+//---------------------------------------------------------------
+// Media Queries
+//---------------------------------------------------------------
+$mq-responsive: true;
+$mq-static-breakpoint: large;
+$mq-breakpoints: (
+  small: 500px,
+  medium: 768px,
+  large: 1024px,
+  xlarge: 1280px
+);
+
+// Our files
+@import '../color';
+@import '../fluid-type';
+@import '../font-smoothing';
+@import '../map-deep-get';
+@import '../strip-unit';
+@import '../spacing';
+@import 'type-styles';

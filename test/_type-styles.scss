@@ -1,0 +1,9 @@
+@import '../type-styles';
+
+.type-test-body {
+  @include type-style(body);
+}
+
+.type-test-heading {
+  @include type-style(heading);
+}
