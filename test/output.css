@@ -1,0 +1,654 @@
+/*
+  Utility that automatically generates all of the color styles
+  for a project. Relies on a $colors map variable existing in the following format:
+*/
+/*
+  Function for getting a specific color from within the $colors map
+  @param $key (string)  - Key color you want
+  @param $map (map)     - Map to search for $key [$colors]
+*/
+/*
+  Function for lightening a color
+  @param $color (color)       - color to tint
+  @param $percentage (number) - percentage of `$color` in returned color
+  @return color
+*/
+/*
+  Function for darkening a color
+  @param $color (color)       - color to tint
+  @param $percentage (number) - percentage of `$color` in returned color
+  @return color
+*/
+/*
+  Loop through the $colors map (defined in `_base/variable.scss`)
+  and generate helpers classes we can use to apply directly into our
+  template markup.
+*/
+.h-color-text-black {
+  color: #222;
+}
+
+.h-color-bg-black {
+  background-color: #222;
+}
+
+.h-color-text-white {
+  color: #fff;
+}
+
+.h-color-bg-white {
+  background-color: #fff;
+}
+
+.h-color-text-gray {
+  color: #aaa;
+}
+
+.h-color-bg-gray {
+  background-color: #aaa;
+}
+
+/*
+  Adjust font smoothing for improved rendering when light text is on top of dark backgrounds.
+*/
+/*
+   Function for getting deeply nested sass maps. 
+*/
+/*
+  Mixin to provide spacing (either margin or padding) to a defined
+  location of an element and have that spacing scale down proportionally
+  at smaller screen sizes. Relies on a $spacing map variable existing in the following format:
+*/
+/*
+  Function for getting a specific size from the $spacing map.
+  @param $key (string)  - Key size you want
+  @param $map (map)     - Map to search for $key [$spacing]
+*/
+/*
+  Generates responsive spacing and applies it to the supplied property.
+  @param $size (key)                   - Key size you want (from the $spacing map)
+  @param $property (string)            - The css property you'd like to apply the spacing to
+  @param $sizeAdjustSmall (number)     - Helps us proportionally scale spacing at smaller screen sizes
+  @param $sizeAdjustMedium (number)    - Helps us proportionally scale spacing at medium screen sizes
+  @param $negative (boolean)           - Whether or not we want to apply spacing as a negative value
+  @param $until (key)                  - Key from the $mq-breakpoints map. If set, the spacing
+                                         will only be applied up until this breakpoint.
+*/
+/*
+  Loop through the $spacing map (defined in `_base/variables.scss`)
+  and generate helpers classes we can use to apply directly into our
+  template markup.
+*/
+.h-spacing-top-margin-none {
+  margin-top: 0;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-margin-none {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-margin-none {
+    margin-top: 0;
+  }
+}
+
+.h-spacing-bottom-margin-none {
+  margin-bottom: 0;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-margin-none {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-margin-none {
+    margin-bottom: 0;
+  }
+}
+
+.h-spacing-top-padding-none {
+  padding-top: 0;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-padding-none {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-padding-none {
+    padding-top: 0;
+  }
+}
+
+.h-spacing-bottom-padding-none {
+  padding-bottom: 0;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-padding-none {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-padding-none {
+    padding-bottom: 0;
+  }
+}
+
+.h-spacing-top-margin-xs {
+  margin-top: 1.4rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-margin-xs {
+    margin-top: 1.7rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-margin-xs {
+    margin-top: 2rem;
+  }
+}
+
+.h-spacing-bottom-margin-xs {
+  margin-bottom: 1.4rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-margin-xs {
+    margin-bottom: 1.7rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-margin-xs {
+    margin-bottom: 2rem;
+  }
+}
+
+.h-spacing-top-padding-xs {
+  padding-top: 1.4rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-padding-xs {
+    padding-top: 1.7rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-padding-xs {
+    padding-top: 2rem;
+  }
+}
+
+.h-spacing-bottom-padding-xs {
+  padding-bottom: 1.4rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-padding-xs {
+    padding-bottom: 1.7rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-padding-xs {
+    padding-bottom: 2rem;
+  }
+}
+
+.h-spacing-top-margin-s {
+  margin-top: 2.1rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-margin-s {
+    margin-top: 2.55rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-margin-s {
+    margin-top: 3rem;
+  }
+}
+
+.h-spacing-bottom-margin-s {
+  margin-bottom: 2.1rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-margin-s {
+    margin-bottom: 2.55rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-margin-s {
+    margin-bottom: 3rem;
+  }
+}
+
+.h-spacing-top-padding-s {
+  padding-top: 2.1rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-padding-s {
+    padding-top: 2.55rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-padding-s {
+    padding-top: 3rem;
+  }
+}
+
+.h-spacing-bottom-padding-s {
+  padding-bottom: 2.1rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-padding-s {
+    padding-bottom: 2.55rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-padding-s {
+    padding-bottom: 3rem;
+  }
+}
+
+.h-spacing-top-margin-sm {
+  margin-top: 2.8rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-margin-sm {
+    margin-top: 3.4rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-margin-sm {
+    margin-top: 4rem;
+  }
+}
+
+.h-spacing-bottom-margin-sm {
+  margin-bottom: 2.8rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-margin-sm {
+    margin-bottom: 3.4rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-margin-sm {
+    margin-bottom: 4rem;
+  }
+}
+
+.h-spacing-top-padding-sm {
+  padding-top: 2.8rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-padding-sm {
+    padding-top: 3.4rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-padding-sm {
+    padding-top: 4rem;
+  }
+}
+
+.h-spacing-bottom-padding-sm {
+  padding-bottom: 2.8rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-padding-sm {
+    padding-bottom: 3.4rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-padding-sm {
+    padding-bottom: 4rem;
+  }
+}
+
+.h-spacing-top-margin-m {
+  margin-top: 3.5rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-margin-m {
+    margin-top: 4.25rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-margin-m {
+    margin-top: 5rem;
+  }
+}
+
+.h-spacing-bottom-margin-m {
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-margin-m {
+    margin-bottom: 4.25rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-margin-m {
+    margin-bottom: 5rem;
+  }
+}
+
+.h-spacing-top-padding-m {
+  padding-top: 3.5rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-padding-m {
+    padding-top: 4.25rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-padding-m {
+    padding-top: 5rem;
+  }
+}
+
+.h-spacing-bottom-padding-m {
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-padding-m {
+    padding-bottom: 4.25rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-padding-m {
+    padding-bottom: 5rem;
+  }
+}
+
+.h-spacing-top-margin-ml {
+  margin-top: 4.2rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-margin-ml {
+    margin-top: 5.1rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-margin-ml {
+    margin-top: 6rem;
+  }
+}
+
+.h-spacing-bottom-margin-ml {
+  margin-bottom: 4.2rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-margin-ml {
+    margin-bottom: 5.1rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-margin-ml {
+    margin-bottom: 6rem;
+  }
+}
+
+.h-spacing-top-padding-ml {
+  padding-top: 4.2rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-padding-ml {
+    padding-top: 5.1rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-padding-ml {
+    padding-top: 6rem;
+  }
+}
+
+.h-spacing-bottom-padding-ml {
+  padding-bottom: 4.2rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-padding-ml {
+    padding-bottom: 5.1rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-padding-ml {
+    padding-bottom: 6rem;
+  }
+}
+
+.h-spacing-top-margin-l {
+  margin-top: 5.95rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-margin-l {
+    margin-top: 7.225rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-margin-l {
+    margin-top: 8.5rem;
+  }
+}
+
+.h-spacing-bottom-margin-l {
+  margin-bottom: 5.95rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-margin-l {
+    margin-bottom: 7.225rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-margin-l {
+    margin-bottom: 8.5rem;
+  }
+}
+
+.h-spacing-top-padding-l {
+  padding-top: 5.95rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-padding-l {
+    padding-top: 7.225rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-padding-l {
+    padding-top: 8.5rem;
+  }
+}
+
+.h-spacing-bottom-padding-l {
+  padding-bottom: 5.95rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-padding-l {
+    padding-bottom: 7.225rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-padding-l {
+    padding-bottom: 8.5rem;
+  }
+}
+
+.h-spacing-top-margin-xl {
+  margin-top: 10.5rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-margin-xl {
+    margin-top: 12.75rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-margin-xl {
+    margin-top: 15rem;
+  }
+}
+
+.h-spacing-bottom-margin-xl {
+  margin-bottom: 10.5rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-margin-xl {
+    margin-bottom: 12.75rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-margin-xl {
+    margin-bottom: 15rem;
+  }
+}
+
+.h-spacing-top-padding-xl {
+  padding-top: 10.5rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-top-padding-xl {
+    padding-top: 12.75rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-top-padding-xl {
+    padding-top: 15rem;
+  }
+}
+
+.h-spacing-bottom-padding-xl {
+  padding-bottom: 10.5rem;
+}
+
+@media (min-width: 48em) {
+  .h-spacing-bottom-padding-xl {
+    padding-bottom: 12.75rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .h-spacing-bottom-padding-xl {
+    padding-bottom: 15rem;
+  }
+}
+
+/*
+   Function for getting deeply nested sass maps. 
+*/
+/*
+  Adjust font smoothing for improved rendering when light text is on top of dark backgrounds.
+*/
+/*
+  Utility that automatically generates all of the type styles
+  for a project. Relies on $type-styles and $font-stacks map variables existing in the following format:
+*/
+/*
+  Function for getting a specific style map from within the $type-styles map
+  @param $key (string)  - Key style you want
+  @param $map (map)     - Map to search for $key [$font-stacks]
+*/
+/*
+  Generates font styles related to a specific font-stack.
+  @param $key (string)  - Key to find in $map
+  @param $map (map)     - Map to search for $key [$font-stacks]
+*/
+/*
+  Mixin for getting a font-stack and size from the $type-styles map.
+  @param $key (string)  - Should be a top level key from the $type-styles map
+  @param $size (string) - The size key to grab, should correspond to a breakpoint
+  @param $map (map)     - Map to search for $key [$font-stacks]  
+*/
+/*
+  Generate font-family and typesize styles across breakpoints. 
+  @param $key (string)   - Should be a top level key from the $type-styles map
+  @param $map (map)      - Map to search for $key [$font-stacks] 
+*/
+/*
+  Loop through the $type-styles map (defined in `_base/variables.scss`)
+  and generate helpers classes we can use to apply directly into our
+  template markup.
+*/
+.h-type-heading {
+  font-size: 2.4rem;
+  line-height: 1.4;
+  text-transform: normal;
+  letter-spacing: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media (min-width: 48em) {
+  .h-type-heading {
+    font-size: 3.6rem;
+  }
+}
+
+.h-type-body {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  text-transform: normal;
+  letter-spacing: 0;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-weight: 700;
+  font-style: normal;
+}

@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+https://github.com/onedesign/one-sass-toolkit.git"
   },
+  "scripts": {
+    "test": "node-sass --output-style=expanded test/test.scss test/output.css"
+  },
   "keywords": [
     "sass",
     "css",
