@@ -21,6 +21,7 @@ $fluid-max-wcreen: 1440px !default;
 $type-styles: (
   heading: (
     stack: sans-serif,
+    smoothing: true,
     sizes: (24, 36),
     properties: (
       line-height: 1.4,
