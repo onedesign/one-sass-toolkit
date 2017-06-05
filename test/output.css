@@ -612,15 +612,9 @@
   @param $map (map)     - Map to search for $key [$font-stacks]
 */
 /*
-  Mixin for getting a font-stack and size from the $type-styles map.
-  @param $key (string)  - Should be a top level key from the $type-styles map
-  @param $size (string) - The size key to grab, should correspond to a breakpoint
-  @param $map (map)     - Map to search for $key [$font-stacks]  
-*/
-/*
-  Generate font-family and typesize styles across breakpoints. 
+  Generate font-family and typesize styles across breakpoints.
   @param $key (string)   - Should be a top level key from the $type-styles map
-  @param $map (map)      - Map to search for $key [$font-stacks] 
+  @param $map (map)      - Map to search for $key [$font-stacks]
 */
 /*
   Loop through the $type-styles map (defined in `_base/variables.scss`)
@@ -628,27 +622,61 @@
   template markup.
 */
 .h-type-heading {
-  font-size: 2.4rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   line-height: 1.4;
   text-transform: normal;
   letter-spacing: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  font-style: normal;
 }
 
-@media (min-width: 48em) {
+@media screen and (min-width: 320px) {
   .h-type-heading {
-    font-size: 3.6rem;
+    font-size: calc(24px + 12 * (100vw - 320px) / 1120);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .h-type-heading {
+    font-size: 36px;
   }
 }
 
 .h-type-body {
+  font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 1.6rem;
   line-height: 1.6;
   text-transform: normal;
   letter-spacing: 0;
+}
+
+.type-test-body {
   font-family: Georgia, Times, "Times New Roman", serif;
-  font-weight: 700;
-  font-style: normal;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  text-transform: normal;
+  letter-spacing: 0;
+}
+
+.type-test-heading {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.4;
+  text-transform: normal;
+  letter-spacing: 0;
+}
+
+@media screen and (min-width: 320px) {
+  .type-test-heading {
+    font-size: calc(24px + 12 * (100vw - 320px) / 1120);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .type-test-heading {
+    font-size: 36px;
+  }
 }
