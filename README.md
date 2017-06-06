@@ -91,7 +91,7 @@ $colors: (
 
 ### Type Styles
 
-Automatically generates all of the type styles for a project, provides a mixin for grabbing a specific set of predefined styles, adjusts type responsively, and provides optional helper classes for your type styles that can be used directly in your HTML.
+Automatically generates all of the type styles for a project, provides a mixin for grabbing a specific set of predefined styles, adjusts type responsively, and provides optional helper classes for your type styles that can be used directly in your HTML. A type style can be any collection of CSS properties. Anything you add to the `properties` key of the configuration map will be output by the mixin.
 
 #### As an SCSS mixin
 
@@ -192,24 +192,28 @@ $font-stacks: (
 $type-styles: (
   heading: (
     stack: futura-bold,
-    line-height: 1,
-    text-transform: normal,
-    letter-spacing: 0,
     sizes: (
       default: 14,
       medium: 18
+    ),
+    properties: (
+      line-height: 1,
+      text-transform: normal,
+      letter-spacing: 0,
     )
   ),
 
   body: (
     stack: helvetica,
-    line-height: 1.4,
-    text-transform: uppercase,
-    letter-spacing: 1.2,
     font-smoothing: true,
     sizes: (
       default: 16,
       medium: 24
+    ),
+    properties: (
+      line-height: 1.4,
+      text-transform: uppercase,
+      letter-spacing: 1.2,
     )
   )
 );
