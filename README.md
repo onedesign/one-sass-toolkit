@@ -177,21 +177,13 @@ Also relies on $`type-styles` and `$font-stacks` map variables existing in the f
 
 ```scss
 $font-stacks: (
-  futura-bold: (
-    font-family: (Futura, 'Trebuchet MS', Arial, sans-serif),
-    font-weight: 700,
-    font-style: normal
-  ),
-  helvetica: (
-    font-family: ('Helvetica Neue', Helvetica, Arial, sans-serif;),
-    font-weight: normal,
-    font-style: normal
-  )
+  futura: (Futura, 'Trebuchet MS', Arial, sans-serif),
+  helvetica: ('Helvetica Neue', Helvetica, Arial, sans-serif)
 );
 
 $type-styles: (
   heading: (
-    stack: futura-bold,
+    stack: futura,
     sizes: (
       default: 14,
       medium: 18
