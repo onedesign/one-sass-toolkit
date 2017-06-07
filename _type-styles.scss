@@ -11,16 +11,8 @@
 */
 
 $font-stacks: (
-  serif: (
-    font-family: (Georgia, Times, "Times New Roman", serif),
-    font-weight: 700,
-    font-style: normal
-  ),
-  sans-serif: (
-    font-family: ('Helvetica Neue', Helvetica, Arial, sans-serif),
-    font-weight: normal,
-    font-style: normal
-  )
+  serif: (Georgia, Times, "Times New Roman", serif),
+  sans-serif: ('Helvetica Neue', Helvetica, Arial, sans-serif),
 ) !default;
 
 $type-styles: (
@@ -63,24 +55,6 @@ $type-styles: (
   }
 }
 
-
-//---------------------------------------------------------------
-// Font Stack Styles
-//---------------------------------------------------------------
-/*
-  Generates font styles related to a specific font-stack.
-  @param $key (string)  - Key to find in $map
-  @param $map (map)     - Map to search for $key [$font-stacks]
-*/
-@mixin font-stack-styles($key, $map: $font-stacks) {
-  @if map_has_key($map, $key) {
-    font-family: map-deep-get($map, $key, 'font-family');
-    font-weight: map-deep-get($map, $key, 'font-weight');
-    font-style: map-deep-get($map, $key, 'font-style');
-  }
-}
-
-
 //---------------------------------------------------------------
 // Get Type Style
 //---------------------------------------------------------------
@@ -102,11 +76,12 @@ $type-styles: (
     // Set font-size
     font-size: ($font-size / 10) * 1rem;
 
-    @if map_has_key($map, $key) and map-get($map-style, font-smoothing)  {
+    @if map_has_key($map, $key) and map-get($map-style, font-smoothing) {
       @include font-smoothing();
     }
     // Set font-family
-    @include font-stack-styles(map-get($map-style, 'stack'));
+    $family-key: map-get($map-style, 'stack');
+    font-family: map-get($font-stacks, $family-key);
 
     // Set arbitrary properties
     @if map_has_key($map-style, 'properties') {
