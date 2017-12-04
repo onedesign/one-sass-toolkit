@@ -1,8 +1,8 @@
-@import "strip-unit";
+@import "strip-units";
 
 // =========================================================================
 //
-//  PRECISE CONTROL OVER RESPONSIVE TYPOGRAPHY FOR SASS
+//  PRECISE CONTROL OVER RESPONSIVE SIZING FOR SASS
 //  ---------------------------------------------------
 //  Indrek Paas @indrekpaas
 //
@@ -16,15 +16,21 @@
 /// @param {string} $max-vw - maximum viewport width for values
 /// @param {string} $min-value - minimum value
 /// @param {string} $max-value - maximum value
+/// @param {boolean} $negative - whether the value range should be negative
 
-@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+@mixin fluid($properties, $min-vw, $max-vw, $min-value, $max-value, $negative: false) {
+  @if $negative {
+    $min-value: $min-value * -1;
+    $max-value: $max-value * -1;
+  }
+
   @each $property in $properties {
     #{$property}: $min-value;
   }
 
   @media screen and (min-width: $min-vw) {
     @each $property in $properties {
-      #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+      #{$property}: calc(#{$min-value} + #{strip-units($max-value - $min-value)} * ((100vw - #{$min-vw}) / #{strip-units($max-vw - $min-vw)}));
     }
   }
 

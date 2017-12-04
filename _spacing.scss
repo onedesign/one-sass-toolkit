@@ -50,6 +50,8 @@ $spacing: (
                                          will only be applied up until this breakpoint.
 */
 @mixin spacing($size, $property: margin-top, $negative: false,  $sizeAdjustSmall: 0.7, $sizeAdjustMedium: 0.85, $until: false) {
+  @warn "The one-sass-toolkit `spacing()` mixin is deprecated and may be removed in a future release. Consider using the `fluid-size()` mixin instead.";
+
   @if map-has-key($spacing, $size) {
 
     // Set spacing value

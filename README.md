@@ -6,8 +6,8 @@ A collection of foundational utilities for Sass.
 
 - [Color](#color)
 - [Type Styles](#type-styles)
-- [Spacing](#spacing)
-- [Fluid Type](#fluid-type)
+- [Fluid Size](#fluid-size)
+- [Fluid](#fluid)
 
 ## Install
 
@@ -18,9 +18,9 @@ npm install one-sass-toolkit --save
 ```scss
 // in your main.scss
 @import "one-sass-toolkit/color";
-@import "one-sass-toolkit/spacing";
 @import "one-sass-toolkit/type-styles";
-@import "one-sass-toolkit/fluid-type";
+@import "one-sass-toolkit/fluid-size";
+@import "one-sass-toolkit/fluid";
 ```
 
 ## Use
@@ -36,6 +36,7 @@ There are three variables included for outputting helpers. One for each toolkit 
 $output-color-helpers
 $output-spacing-helpers
 $output-type-helpers
+$output-fluid-size-helpers
 ```
 
 By default all helpers are output, to turn them off just add the variable and set the variable to `false`.
@@ -219,7 +220,78 @@ $type-styles: (
 );
 ```
 
+### Fluid Size
+
+The fluid size mixin makes it simple to smoothly adjust a value across a range of breakpoints, with precise control over the value at each breakpoint. It’s great for handling responsive margins and padding, but can be used for any numeric value, including font sizes, absolute/relative positioning values, etc. Interally, this mixin extends the `fluid` mixin mentioned later on. If you want a simpler, lower-level way to handle fluid property adjustments, check out the `fluid` mixin.
+
+#### Required Setup
+
+Relies on a `$fluid-sizes` map variable existing in the following format:
+
+```scss
+$fluid-sizes: (
+  s: (
+    default: 20px,
+    medium: 40px,
+    max: 80px
+  ),
+
+  m: (
+    default: 20px,
+    medium: 60px,
+    max: 100px
+  )
+);
+```
+
+Each set in `$fluid-sizes` can have any key (e.g. `s`) and _must_ include at least a `default` key/value and one other key/value pair representing another breakpoint. Each key/value pair inside of a set should have a key that matches a value from you `$mq-breakpoints` map, and a value that matches the desired value when the viewport width is at that breakpoint.
+
+The `default` key here represents the minimum possible size/value, as defined by the `$fluid-min-width` variable, which is `320px` by default. You can adjust this value by setting a `$fluid-min-width` variable to the smallest possible viewport width you want to handle.
+
+#### As a mixin
+
+```scss
+* + * {
+  @include fluid-size(s); // by default, the value is applied to `margin-top`
+}
+
+* + * {
+  @include fluid-size(m, padding-bottom); // applies the value to any property
+}
+```
+
+When applied using the `$fluid-sizes` map in the example above, the first example here would output a `margin-top` value of `20px` at a viewport width of `320px` wide, which would scale up to a value of `40px` at the `medium` breakpoint, then scale up to a maximum value of `80px` at the `max` breakpoint. The value will never be less than `20px` and never more than `80px`
+
+#### With negative values
+
+You can adjust the mixin to produce negative values from any `$fluid-sizes` set by setting the `$negative` parameter to true:
+
+```scss
+* + * {
+  @include fluid-size(s, margin-top, $negative: true);
+}
+```
+
+#### A note about units
+
+Due to some browser inconsistencies when using the CSS `calc()` function that is used by this mixin behind the scenes, we recommend setting all `$fluid-sizes` values in `px`, and all values _must_ include a unit, even `0` values (i.e. use `0px` instead of `0`). Failing to follow these guidelines probably wont’t cause issues in all browsers, but cross-browser behavior may be inconsistent.
+
+#### As an HTML class
+
+Works for any of the following classes:
+
+- `h-fluid-size-top-margin-{$amount}`
+- `h-fluid-size-bottom-margin-{$amount}`
+- `h-fluid-size-top-padding-{$amount}`
+- `h-fluid-size-bottom-padding-{$amount}`
+
+```html
+<h1 class="h-fluid-size-top-margin-s">Ground control to Major Tom</h1>
+```
+
 ### Spacing
+
+**Deprecated and may be removed in a future release. Use `fluid-size` instead.**
 
 Mixin to provide spacing (either margin or padding) to a defined
 location of an element and have that spacing scale down proportionally
@@ -279,19 +351,21 @@ $spacing: (
 
 The exact names of the keys in this map aren't important, as long as `@include spacing(foo)` has a matching key `foo` in the map.
 
-### Fluid Type
-Written by [Indrek Paas](https://github.com/indrekpaas) and inspired by [Mike Riethmuller](https://madebymike.com.au/writing/precise-control-responsive-typography/) this mixin allows you to specify a minumum and maximum size for values. Allowing for more fluid websites.
+### Fluid
+
+Inspired by the work of [Indrek Paas](https://github.com/indrekpaas) and the writing of [Mike Riethmuller](https://madebymike.com.au/writing/precise-control-responsive-typography/) this mixin allows you to specify a minumum and maximum size for values. Allowing for more fluid websites.
 
 #### As an SCSS mixin
+
 ```scss
-@include fluid-type($properties)
+@include fluid($properties)
 /* Single property */
 html {
-  @include fluid-type(font-size, 320px, 1366px, 14px, 18px);
+  @include fluid(font-size, 320px, 1366px, 14px, 18px);
 }
 
 /* Multiple properties with same values */
 h1 {
-  @include fluid-type(padding-bottom padding-top, 20em, 70em, 2em, 4em);
+  @include fluid(padding-bottom padding-top, 20em, 70em, 2em, 4em);
 }
 ```
