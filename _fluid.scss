@@ -18,25 +18,27 @@
 /// @param {string} $max-value - maximum value
 /// @param {boolean} $negative - whether the value range should be negative
 
-@mixin fluid($properties, $min-vw, $max-vw, $min-value, $max-value, $negative: false) {
+@mixin fluid($properties, $min-vw, $max-vw, $min-value, $max-value, $negative: false, $adjust: 0) {
   @if $negative {
-    $min-value: $min-value * -1;
-    $max-value: $max-value * -1;
+    $min-value: ($min-value + $adjust) * -1;
+    $max-value: ($max-value + $adjust) * -1;
   }
 
   @each $property in $properties {
-    #{$property}: $min-value;
+    #{$property}: $min-value + $adjust;
   }
 
   @media screen and (min-width: $min-vw) {
     @each $property in $properties {
+      $min-value: $min-value + $adjust;
+      $max-value: $max-value + $adjust;
       #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
     }
   }
 
   @media screen and (min-width: $max-vw) {
     @each $property in $properties {
-      #{$property}: $max-value;
+      #{$property}: $max-value + $adjust;
     }
   }
 }
